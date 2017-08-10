@@ -1,0 +1,1 @@
+sh ./framework/3_run.sh cli $@

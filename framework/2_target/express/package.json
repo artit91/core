@@ -1,0 +1,10 @@
+{
+  "name": "express-target",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "file": "^0.2.2"
+  }
+}

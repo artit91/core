@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "module": "commonjs",
+        "target": "ES2015",
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "noLib": false,
+        "declaration": false,
+        "experimentalDecorators": true,
+        "strictNullChecks": true,
+        "newLine": "LF",
+        "allowJs": false
+    }
+}

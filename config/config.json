@@ -1,0 +1,28 @@
+{
+    "services": {
+        "mongodb": {
+            "uris": "mongodb://localhost/myapp"
+        },
+        "session": {
+            "timeout": 1209600,
+            "secret": "14m4f15h"
+        },
+        "token": {
+            "timeout": 86400,
+            "secret": "14m!4f15h"
+        }
+    },
+    "logging": {
+        "level": "INFO",
+        "format": "console",
+        "output": "stdout",
+        "directory": "log",
+        "rotation": "daily"
+    },
+    "target": {
+        "express": {
+            "host": "0.0.0.0",
+            "port": 8080
+        }
+    }
+}

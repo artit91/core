@@ -1,0 +1,36 @@
+{
+    "extends": "./node_modules/tslint-microsoft-contrib",
+    "rules": {
+        /** typeCheck off */
+        "await-promise": false,
+        "no-floating-promises": false,
+        "no-for-in-array": false,
+        "no-unsafe-any": false,
+        "promise-function-async": false,
+        "restrict-plus-operands": false,
+        "strict-boolean-expressions": false,
+        "completed-docs": [],
+        "no-unnecessary-qualifier": false,
+        "no-void-expression": false,
+        /** typeCheck off */
+        "no-stateless-class": false,
+        "function-name": false,
+        "typedef-whitespace": [
+            true,
+            {
+                "call-signature": "onespace",
+                "index-signature": "nospace",
+                "parameter": "nospace",
+                "property-declaration": "nospace",
+                "variable-declaration": "nospace"
+            },
+            {
+                "call-signature": "onespace",
+                "index-signature": "onespace",
+                "parameter": "onespace",
+                "property-declaration": "onespace",
+                "variable-declaration": "onespace"
+            }
+        ]
+    }
+}

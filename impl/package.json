@@ -1,0 +1,10 @@
+{
+  "name": "impl",
+  "version": "1.0.0",
+  "dependencies": {
+    "@types/mongodb": "2.2.2",
+    "@types/uid-safe": "2.1.1",
+    "mongodb": "2.2.26",
+    "uid-safe": "2.1.4"
+  }
+}
