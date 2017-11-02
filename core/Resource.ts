@@ -1,3 +1,4 @@
+// tslint:disable-next-line
 import 'reflect-metadata';
 
 import { IContext } from 'core';
@@ -45,7 +46,7 @@ export const Resource = (...params: string[]) : Function => ( // tslint:disable-
     target: {},
     propertyKey?: string,
     propertyDescriptor?: TypedPropertyDescriptor<IService<{}>>
-): void => {
+) : void => {
     // @Resource on property
     if (propertyKey) {
         addMeta(target, propertyKey, params);

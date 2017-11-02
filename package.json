@@ -19,9 +19,9 @@
     "@types/validator": "^6.2.0",
     "reflect-metadata": "^0.1.10",
     "source-map-support": "^0.4.15",
-    "tslint": "4.5.1",
-    "tslint-microsoft-contrib": "4.0.1",
-    "typescript": "latest",
+    "tslint": "^5.8.0",
+    "tslint-microsoft-contrib": "^5.0.1",
+    "typescript": "^2.6.1",
     "validator": "^7.0.0"
   }
 }

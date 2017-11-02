@@ -1,7 +1,7 @@
 import { config, IResource } from 'core';
 
 export class EmailSender {
-    public send(email: string, topic: string, message: string) : Promise<void> {
+    public send(address: string, topic: string, message: string) : Promise<void> {
         return Promise.resolve();
     }
 }

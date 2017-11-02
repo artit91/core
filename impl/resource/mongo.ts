@@ -7,6 +7,7 @@ import * as mongodb from 'mongodb';
 class Mongo implements IResource {
     public create() : Promise<mongodb.Db> {
         const client: mongodb.MongoClient = mongodb.MongoClient;
+
         return client.connect(<string>config('services.mongodb.uris'));
     }
     public destroy(db: mongodb.Db) : Promise<void> {

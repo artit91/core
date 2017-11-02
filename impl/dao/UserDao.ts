@@ -48,6 +48,7 @@ export class UserDao implements IUserDao {
         } catch (e) {
             return Promise.resolve();
         }
+
         return this.collection.findOne({
             _id: oId
         }).then(this.makeUser);
@@ -96,6 +97,7 @@ export class UserDao implements IUserDao {
     private hashPassword(password: string, salt: string) : string {
         const hash: crypto.Hmac = crypto.createHmac('sha512', salt);
         hash.update(password);
+
         return hash.digest('hex');
     }
     private genSalt() : string {

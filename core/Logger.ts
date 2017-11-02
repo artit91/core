@@ -49,12 +49,12 @@ class LoggerItem {
         const timeFormat: (ts: string) => string = (
             ts: string
         ) : string => new Date(ts).toTimeString().split(' ')[0];
-        let ret: string = [
+        let ret: string = `${[
             this.addColor(timeFormat(this.timestamp), 'magenta'),
             this.addColor(LogLevel[this.level], levelColors[this.level]),
             this.addColor(this.name, 'yellow'),
             this.message
-        ].join('|') + '\n';
+        ].join('|')}\n`;
 
         if (this.data !== undefined) {
             ret += `${this.addColor('data:', 'cyan')} ${
@@ -205,6 +205,7 @@ export class Logger {
             } else {
                 process.stderr.write(text);
             }
+
             return;
         }
 
@@ -214,6 +215,7 @@ export class Logger {
             if (this.config.rotation === 'daily') {
                 return `${isoDate}.log`;
             }
+
             return `${isoDate}-${date.getUTCHours()}.log`;
         };
 
@@ -229,6 +231,7 @@ export class Logger {
                 if (!fs.existsSync(cPath)) {
                     fs.mkdirSync(cPath);
                 }
+
                 return cPath;
             },
             ''

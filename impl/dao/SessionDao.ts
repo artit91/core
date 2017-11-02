@@ -36,7 +36,7 @@ export class SessionDao implements ISessionDao {
             expires: new Date(this.timeout),
             userId
         }).then(
-            ({ ops: [res]}: InsertOneWriteOpResult) => this.makeSession(res)
+            ({ ops: [res]}: InsertOneWriteOpResult) => <ISession>this.makeSession(res)
         );
     }
     public byId(id: string) : Promise<ISession | void> {
@@ -46,6 +46,7 @@ export class SessionDao implements ISessionDao {
         } catch (e) {
             return Promise.resolve();
         }
+
         return this.collection.findOneAndUpdate(
             {
                 key: decrypted,
@@ -69,12 +70,14 @@ export class SessionDao implements ISessionDao {
         const decipher: crypto.Decipher = crypto.createDecipher('aes-256-ctr', this.secret);
         let decrypted: string = decipher.update(sessionId, 'hex', 'utf8');
         decrypted += decipher.final('utf8');
+
         return decrypted;
     }
     private encryptSessionId(sessionId: string) : string {
         const cipher: crypto.Cipher = crypto.createCipher('aes-256-ctr', this.secret);
         let crypted: string = cipher.update(sessionId, 'utf8', 'hex');
         crypted += cipher.final('hex');
+
         return crypted;
     }
     // tslint:disable-next-line

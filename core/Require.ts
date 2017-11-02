@@ -1,3 +1,4 @@
+// tslint:disable-next-line
 import 'reflect-metadata';
 
 import { IContext } from 'core';
@@ -45,7 +46,7 @@ export const Require = (...params: string[]) : Function => ( // tslint:disable-l
     target: {},
     propertyKey?: string,
     propertyDescriptor?: TypedPropertyDescriptor<IService<{}>>
-): void => {
+) : void => {
     // @Require on property
     if (propertyKey) {
         addMeta(target, propertyKey, params);

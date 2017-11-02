@@ -22,7 +22,7 @@ const overiddenMetadataKey: Symbol = Symbol('overridden');
 function decorateService(
     target: {},
     propertyKey: string,
-    propertyDescriptor?: TypedPropertyDescriptor<IService<{}>>
+    propertyDescriptor?: TypedPropertyDescriptor<IService<{} | void>>
 ) : void {
     const overridden: boolean = Reflect.getOwnMetadata(
         overiddenMetadataKey,
@@ -35,12 +35,12 @@ function decorateService(
     }
 
     // tslint:disable-next-line
-    let fn: IService<{}> | void = (<any>target)[propertyKey];
+    let fn: IService<{} | void> | void = (<any>target)[propertyKey];
     if (propertyDescriptor) {
         fn = propertyDescriptor.value;
     }
 
-    const overrideFn: IService<{}> = async(
+    const overrideFn: IService<{} | void> = async(
         event: IEvent = {},
         context: IContext = {}
     ) : Promise<{} | void> => {

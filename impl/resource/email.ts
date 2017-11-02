@@ -5,10 +5,10 @@ import {
 } from 'core';
 
 export class EmailSender {
-    public send(email: string, topic: string, message: string) : Promise<void> {
+    public send(address: string, topic: string, message: string) : Promise<void> {
         const logger: Logger = new Logger('email');
 
-        logger.warn(`${email}: [${topic}]: ${message}`);
+        logger.warn(`${address}: [${topic}]: ${message}`);
 
         return Promise.resolve();
     }

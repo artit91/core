@@ -41,7 +41,7 @@ export class TokenDao implements ITokenDao {
                 userId,
                 category
             }).then(
-                ({ ops: [res]}: InsertOneWriteOpResult) => this.makeToken(res)
+                ({ ops: [res]}: InsertOneWriteOpResult) => <IToken>this.makeToken(res)
             );
         });
     }
@@ -52,6 +52,7 @@ export class TokenDao implements ITokenDao {
         } catch (e) {
             return Promise.resolve();
         }
+
         return this.collection.findOneAndUpdate(
             {
                 key: decrypted,
@@ -78,6 +79,7 @@ export class TokenDao implements ITokenDao {
         } catch (e) {
             return Promise.resolve();
         }
+
         return this.collection.remove({
             key: decrypted
         }).then(() => Promise.resolve());
@@ -86,12 +88,14 @@ export class TokenDao implements ITokenDao {
         const decipher: crypto.Decipher = crypto.createDecipher('aes-256-ctr', this.secret);
         let decrypted: string = decipher.update(sessionId, 'hex', 'utf8');
         decrypted += decipher.final('utf8');
+
         return decrypted;
     }
     private encryptTokenId(sessionId: string) : string {
         const cipher: crypto.Cipher = crypto.createCipher('aes-256-ctr', this.secret);
         let crypted: string = cipher.update(sessionId, 'utf8', 'hex');
         crypted += cipher.final('hex');
+
         return crypted;
     }
     // tslint:disable-next-line

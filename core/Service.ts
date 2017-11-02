@@ -1,3 +1,4 @@
+// tslint:disable-next-line
 import 'reflect-metadata';
 
 import { Exception } from 'core';
@@ -28,7 +29,7 @@ function decorateService(
     // tslint:disable-next-line
     let fn: IService<{}> | void = (<any>target)[propertyKey];
 
-    const overrideFn: IService<{}> = async(
+    const overrideFn: IService<{} | void> = async(
         event: IEvent = {},
         context: IContext = {}
     ) : Promise<{} | void> => {
@@ -80,7 +81,7 @@ function decorateService(
             }
         }
 
-        const destroy: Function = (): Promise<void[]> => Promise.all(
+        const destroy: Function = () : Promise<void[]> => Promise.all(
             Object.keys(resources).map(
                 (resKey: string) => resources[resKey].destroy(
                     <{}>context[resKey]
