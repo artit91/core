@@ -42,8 +42,8 @@ How to Run
 The example project requires a unix system and `MongoDB` on `localhost`.
 
 ```bash
-yarn install
-./start.sh
+npm install
+npm run pipeline
 ```
 
 Table of Contents

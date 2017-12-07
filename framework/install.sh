@@ -4,6 +4,6 @@ popd > /dev/null
 export PROJECT_ROOT=$FW_ROOT/..
 
 cd $FW_ROOT/2_target/express
-yarn install
+npm install
 cd $PROJECT_ROOT/impl
-yarn install
+npm install

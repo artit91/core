@@ -15,7 +15,7 @@ import { ISession } from 'lib/entity/ISession';
 import { Errors } from 'lib/Errors';
 
 import { SessionDao } from 'src/dao/SessionDao';
-import { UserDao } from 'src/dao/userDao';
+import { UserDao } from 'src/dao/UserDao';
 
 const overiddenMetadataKey: Symbol = Symbol('overridden');
 

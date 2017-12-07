@@ -85,14 +85,14 @@ export class TokenDao implements ITokenDao {
         }).then(() => Promise.resolve());
     }
     private dencryptTokenId(sessionId: string) : string {
-        const decipher: crypto.Decipher = crypto.createDecipher('aes-256-ctr', this.secret);
+        const decipher: crypto.Decipher = crypto.createDecipher('aes-256-cbc', this.secret);
         let decrypted: string = decipher.update(sessionId, 'hex', 'utf8');
         decrypted += decipher.final('utf8');
 
         return decrypted;
     }
     private encryptTokenId(sessionId: string) : string {
-        const cipher: crypto.Cipher = crypto.createCipher('aes-256-ctr', this.secret);
+        const cipher: crypto.Cipher = crypto.createCipher('aes-256-cbc', this.secret);
         let crypted: string = cipher.update(sessionId, 'utf8', 'hex');
         crypted += cipher.final('hex');
 

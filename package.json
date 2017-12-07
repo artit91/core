@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "install": "sh ./framework/install.sh",
-    "start": "sh ./framework/2_target.sh && ./framework/3_run.sh express",
-    "build": "sh ./framework/2_target.sh",
-    "test": "sh ./framework/1_test.sh",
-    "pipeline": "sh ./framework/pipeline.sh express",
-    "runserver": "sh ./framework/3_run.sh express"
+    "install": "bash ./framework/install.sh",
+    "start": "bash ./framework/2_target.sh && bash ./framework/3_run.sh express",
+    "build": "bash ./framework/2_target.sh",
+    "test": "bash ./framework/1_test.sh",
+    "pipeline": "bash ./framework/pipeline.sh express",
+    "runserver": "bash ./framework/3_run.sh express"
   },
   "exclude": [
     "node_modules",

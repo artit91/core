@@ -7,8 +7,8 @@ import { IEvent } from 'core';
 import { IResource } from 'core';
 import { IService } from 'core';
 
-import { requirementMetadataKey } from 'core/require';
-import { resourcesMetadataKey } from 'core/resource';
+import { requirementMetadataKey } from 'core/Require';
+import { resourcesMetadataKey } from 'core/Resource';
 
 const overiddenMetadataKey: Symbol = Symbol('overridden');
 

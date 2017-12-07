@@ -9,9 +9,12 @@
         "promise-function-async": false,
         "restrict-plus-operands": false,
         "strict-boolean-expressions": false,
-        "completed-docs": [],
         "no-unnecessary-qualifier": false,
         "no-void-expression": false,
+        "no-cookies": false,
+        "match-default-export-name": false,
+        "no-use-before-declare": false,
+        "completed-docs": false,
         /** typeCheck off */
         "no-stateless-class": false,
         "function-name": false,

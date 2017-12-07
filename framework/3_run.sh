@@ -5,4 +5,4 @@ export FW_ROOT=`pwd`
 popd > /dev/null
 export PROJECT_ROOT=$FW_ROOT/..
 
-sh $FW_ROOT/3_run/run.sh $@
+bash $FW_ROOT/3_run/run.sh $@
