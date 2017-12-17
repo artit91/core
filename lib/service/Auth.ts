@@ -12,13 +12,11 @@ import { ISession } from 'lib/entity/ISession';
 import { IToken } from 'lib/entity/IToken';
 import { IUser } from 'lib/entity/IUser';
 
-import { ISessionDao } from 'lib/dao/ISessionDao';
 import { ITokenDao } from 'lib/dao/ITokenDao';
 import { IUserDao } from 'lib/dao/IUserDao';
 
 import { Errors } from 'lib/Errors';
 
-import { SessionDao } from 'src/dao/SessionDao';
 import { TokenDao } from 'src/dao/TokenDao';
 import { UserDao } from 'src/dao/UserDao';
 
@@ -35,7 +33,7 @@ export class Auth {
      */
     @Require('email', 'password')
     public static register: IService<ISession> = async(event, context) => {
-        const sessionDao: ISessionDao = new SessionDao(context);
+        const tokenDao: ITokenDao = new TokenDao(context);
         const userDao: IUserDao = new UserDao(context);
 
         if (!validator.isEmail(event.email)) {
@@ -69,20 +67,20 @@ export class Auth {
             validated: false
         });
 
-        return sessionDao.create(<string>user.id);
+        return tokenDao.create(<string>user.id, 'session');
     }
     /**
      * Logs a user in
      */
     @Require('email', 'password')
     public static login: IService<ISession> = async(event, context) => {
-        const sessionDao: ISessionDao = new SessionDao(context);
+        const tokenDao: ITokenDao = new TokenDao(context);
         const userDao: IUserDao = new UserDao(context);
 
         const match: IUser | void = await userDao.match(event.email, event.password);
 
         if (match) {
-            return sessionDao.create(<string>match.id);
+            return tokenDao.create(<string>match.id, 'session');
         }
 
         throw new Exception(
@@ -140,9 +138,9 @@ export class Auth {
             );
         }
 
-        const token: IToken | void = await tokenDao.byId(event.token);
+        const token: IToken | void = await tokenDao.byId(event.token, 'password');
 
-        if (!token || token.category !== 'password') {
+        if (!token) {
             throw new Exception(
                 Errors.NotFound,
                 'invalid_token',
@@ -151,7 +149,7 @@ export class Auth {
         }
 
         return Promise.all([
-            tokenDao.remove(event.token),
+            tokenDao.remove(event.token, 'password'),
             userDao.password(token.userId, event.password)
         ]).then(() => Promise.resolve());
     }
@@ -198,9 +196,9 @@ export class Auth {
         const userDao: IUserDao = new UserDao(context);
         const tokenDao: ITokenDao = new TokenDao(context);
 
-        const token: IToken | void = await tokenDao.byId(event.token);
+        const token: IToken | void = await tokenDao.byId(event.token, 'email');
 
-        if (!token || token.category !== 'email') {
+        if (!token) {
             throw new Exception(
                 Errors.NotFound,
                 'invalid_token',
@@ -209,7 +207,7 @@ export class Auth {
         }
 
         return Promise.all([
-            tokenDao.remove(event.token),
+            tokenDao.remove(event.token, 'email'),
             userDao.validate(token.userId)
         ]).then(() => Promise.resolve());
     }

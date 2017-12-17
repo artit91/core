@@ -4,7 +4,13 @@ import { IToken } from 'lib/entity/IToken';
 
 const oneDay: number = 86400 * 1000;
 
-let tokens: IToken[] = [];
+let tokens: IToken[] = [{
+    id: '1',
+    userId: '1',
+    lastModified: new Date(),
+    expires: new Date(Date.now() + oneDay),
+    category: 'session'
+}];
 
 function getNextId() : string {
     return String(tokens.reduce(

@@ -7,14 +7,14 @@ import { Require } from 'core';
 import { Resource } from 'core';
 import { IService } from 'core';
 
-import { ISessionDao } from 'lib/dao/ISessionDao';
+import { ITokenDao } from 'lib/dao/ITokenDao';
 import { IUserDao } from 'lib/dao/IUserDao';
 
 import { ISession } from 'lib/entity/ISession';
 
 import { Errors } from 'lib/Errors';
 
-import { SessionDao } from 'src/dao/SessionDao';
+import { TokenDao } from 'src/dao/TokenDao';
 import { UserDao } from 'src/dao/UserDao';
 
 const overiddenMetadataKey: Symbol = Symbol('overridden');
@@ -55,13 +55,13 @@ function decorateService(
             );
         }
 
-        const sessionDao: ISessionDao = new SessionDao(context);
+        const tokenDao: ITokenDao = new TokenDao(context);
         const userDao: IUserDao = new UserDao(context);
 
         let session: ISession | void;
 
         if (validator.isHexadecimal(event.sessionId)) {
-            session = await sessionDao.byId(event.sessionId);
+            session = await tokenDao.byId(event.sessionId, 'session');
         }
 
         if (!session) {
